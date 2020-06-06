@@ -1,0 +1,16 @@
+{
+  "name": "maxwagnerdev-website",
+  "version": "1.0.0",
+  "description": "Website for www.wagner-dev.com",
+  "author": "Max Wagner",
+  "homepage": "https://www.wagner-dev.com",
+  "scripts": {
+    "build-css": "node-sass --include-path scss assets/src/scss/style.scss assets/dist/css/style.css",
+    "build-css-watch": "node-sass --watch --include-path scss assets/src/scss/style.scss assets/dist/css/style.css"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "bootstrap": "^4.5.0",
+    "node-sass": "^4.14.1"
+  }
+}

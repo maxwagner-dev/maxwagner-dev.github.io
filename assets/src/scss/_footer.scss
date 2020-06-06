@@ -1,0 +1,19 @@
+footer {
+    border-top: 1px $dark-gray solid;
+    padding-top: 20px;
+    ul {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        text-align: right;
+        li {
+            display: inline-block;
+            vertical-align: top;
+            font-weight: 700;
+            padding: 0px 20px;
+            &:last-child {
+                padding: 0px 0px 20px 0px;
+            }
+        }
+    }
+}

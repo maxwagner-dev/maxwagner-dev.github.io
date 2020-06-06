@@ -1,0 +1,61 @@
+header {
+    background-color: $black;
+    color: $white;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+    @include defaultShadow();
+    #logo {
+        a {
+            line-height: 80px;
+            font-size: $h2-font-size;
+            font-weight: 900;
+            display: block;
+            color: $white;
+            &:hover {
+                color: $white;
+                text-decoration: none;
+            }
+        }
+    }
+    nav {
+        a {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0px 20px;
+            font-size: $h3-font-size;
+            font-weight: 700;
+            color: $white;
+            line-height: 80px;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    #headerSocials {
+        text-align: right;
+        a {
+            color: $white;
+            line-height: 80px;
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0px 20px;
+            i {
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0px 10px 0px 0px;
+                font-size: 30px;
+            }
+            &:hover {
+                color: $red;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    
+}

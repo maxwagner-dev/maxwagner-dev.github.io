@@ -1,0 +1,34 @@
+$font-family: "Muli", sans-serif;
+
+$black: #343434;
+$light-gray: #f9f9f9;
+$dark-gray: #ababab;
+$white: #ffffff;
+$red: #f65454;
+
+$default-font-size: 18px;
+$h1-font-size: 50px;
+$h2-font-size: 24px;
+$h3-font-size: 20px;
+
+$spacingMargins: 5, 10, 20, 40, 80, 100;
+$spacingPaddings: 5, 10, 20, 40, 80, 100;
+
+$backgrounds: () !default;
+$backgrounds: map-merge(
+    (
+        "light-gray": $light-gray,
+        "dark-gray": $dark-gray,
+        "black": $black,
+    ),
+    $backgrounds
+);
+
+$tabSpaces: () !default;
+$tabSpaces: map-merge(
+    (
+        "small": 10px,
+        "big": 40px,
+    ),
+    $tabSpaces
+);

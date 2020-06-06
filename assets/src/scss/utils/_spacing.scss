@@ -1,0 +1,60 @@
+@each $margin in $spacingMargins {
+    .marginTop {
+        &-#{$margin} {
+            margin-top: #{$margin}px;
+        }
+    }
+    .marginBottom {
+        &-#{$margin} {
+            margin-bottom: #{$margin}px;
+        }
+    }
+    
+    @media only screen and (min-width: 768px) {
+        .marginRight {
+            &-#{$margin} {
+                margin-right: #{$margin}px;
+            }
+        }
+        .marginLeft {
+            &-#{$margin} {
+                margin-left: #{$margin}px;
+            }
+        }
+    }
+}
+
+@each $padding in $spacingPaddings {
+    .paddingTop {
+        &-#{$padding} {
+            padding-top: #{$padding}px;
+        }
+    }
+    .paddingLeft {
+        &-#{$padding} {
+            padding-left: #{$padding}px;
+        }
+    }
+    .paddingBottom {
+        &-#{$padding} {
+            padding-bottom: #{$padding}px;
+        }
+    }
+    .paddingRight {
+        &-#{$padding} {
+            padding-right: #{$padding}px;
+        }
+    }
+}
+
+.tabSpace {
+    padding-left: 20px;
+}
+
+@each $tab in $tabSpaces {
+    .tabSpace {
+        &-#{$tab} {
+            padding-left: #{$tab}px;
+        }
+    }
+}

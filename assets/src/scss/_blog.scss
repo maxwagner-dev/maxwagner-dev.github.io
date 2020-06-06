@@ -1,0 +1,17 @@
+.blogEntry {
+    background-color: $white;
+    @include defaultShadow();
+    padding: 20px;
+    .blogEntry--publishDate {
+        text-align: right;
+        margin-bottom: 20px;
+    }
+    .blogEntry--headline {
+        font-size: $h3-font-size;
+        font-weight: 900;
+        margin-bottom: 20px;
+    }
+    .blogEntry--summary {
+        margin-bottom: 40px;
+    }
+}
