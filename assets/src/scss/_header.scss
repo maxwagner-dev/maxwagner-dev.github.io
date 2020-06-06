@@ -41,7 +41,7 @@ header {
             line-height: 80px;
             display: inline-block;
             vertical-align: middle;
-            padding: 0px 20px;
+            padding: 0px 10px;
             i {
                 display: inline-block;
                 vertical-align: middle;
@@ -56,6 +56,12 @@ header {
     }
 }
 
-@media only screen and (max-width: 600px) {
-    
+@media only screen and (min-width: 768px) {
+    header {
+        #headerSocials {
+            a {
+                padding: 0px 20px;
+            }
+        }
+    }
 }

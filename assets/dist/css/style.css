@@ -7609,7 +7609,7 @@ header {
       line-height: 80px;
       display: inline-block;
       vertical-align: middle;
-      padding: 0px 20px; }
+      padding: 0px 10px; }
       header #headerSocials a i {
         display: inline-block;
         vertical-align: middle;
@@ -7618,6 +7618,10 @@ header {
       header #headerSocials a:hover {
         color: #f65454;
         text-decoration: none; }
+
+@media only screen and (min-width: 768px) {
+  header #headerSocials a {
+    padding: 0px 20px; } }
 
 body {
   font-family: "Muli", sans-serif;
