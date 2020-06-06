@@ -10,7 +10,7 @@ header {
     #logo {
         a {
             line-height: 80px;
-            font-size: $h2-font-size;
+            font-size: $default-font-size;
             font-weight: 900;
             display: block;
             color: $white;
@@ -58,6 +58,11 @@ header {
 
 @media only screen and (min-width: 768px) {
     header {
+        #logo {
+            a {
+                font-size: $h2-font-size;
+            }
+        }
         #headerSocials {
             a {
                 padding: 0px 20px;
