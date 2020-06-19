@@ -1,9 +1,16 @@
 .button {
     display: inline-block;
+    border: none;
+    &:focus {
+        outline: none;
+    }
     &.button--primary {
         background-color: $red;
         color: $white;
         padding: 10px 20px;
         text-align: center;
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }

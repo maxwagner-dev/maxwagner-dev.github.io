@@ -7565,12 +7565,17 @@ readers do not read off random characters that represent icons */
   text-align: right; }
 
 .button {
-  display: inline-block; }
+  display: inline-block;
+  border: none; }
+  .button:focus {
+    outline: none; }
   .button.button--primary {
     background-color: #f65454;
     color: #ffffff;
     padding: 10px 20px;
     text-align: center; }
+    .button.button--primary:hover {
+      text-decoration: underline; }
 
 header {
   background-color: #343434;
@@ -7706,3 +7711,29 @@ footer {
       padding: 0px 20px; }
       footer ul li:last-child {
         padding: 0px 0px 20px 0px; }
+
+#cookieNotice {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 100;
+  background: #ababab;
+  padding: 10px 40px;
+  visibility: hidden; }
+  #cookieNotice.active {
+    visibility: visible; }
+  #cookieNotice #cookieNotice--text {
+    color: #343434;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 10px; }
+  #cookieNotice #cookieNotice--button {
+    text-align: center; }
+
+@media only screen and (min-width: 992px) {
+  #cookieNotice #cookieNotice--text {
+    margin-bottom: 0px;
+    text-align: left; }
+  #cookieNotice #cookieNotice--button {
+    text-align: right; } }

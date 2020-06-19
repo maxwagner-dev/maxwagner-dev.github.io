@@ -1,0 +1,34 @@
+#cookieNotice {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+    background: $dark-gray;
+    padding: 10px 40px;
+    visibility: hidden;
+    &.active {
+        visibility: visible;
+    }
+    #cookieNotice--text {
+        color: $black;
+        margin-bottom: 20px;
+        text-align: center;
+        padding-top: 10px;
+    }
+    #cookieNotice--button {
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #cookieNotice {
+        #cookieNotice--text {
+            margin-bottom: 0px;
+            text-align: left;
+        }
+        #cookieNotice--button {
+            text-align: right;
+        }
+    }
+}
