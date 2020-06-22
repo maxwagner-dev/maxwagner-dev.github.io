@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
+    <url>
+        <loc>https://www.wagner-dev.com/</loc>
+        <lastmod>2020-06-19T21:52:01+00:00</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://www.wagner-dev.com/team-spirit-in-a-remote-working-world.html</loc>
+        <lastmod>2020-06-19T21:52:01+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.wagner-dev.com/privacy-policy.html</loc>
+        <lastmod>2020-06-19T21:52:01+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.wagner-dev.com/legal-details.html</loc>
+        <lastmod>2020-06-19T21:52:01+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+</urlset>
