@@ -7694,7 +7694,8 @@ ul {
     font-weight: 900;
     margin-bottom: 20px; }
   .blogEntry .blogEntry--summary {
-    margin-bottom: 40px; }
+    margin-bottom: 40px;
+    min-height: 220px; }
 
 footer {
   border-top: 1px #ababab solid;

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/dist/css/prism.css" />
+    <link rel="stylesheet" href="/assets/dist/css/style.css" />
+    <title>Azure Pipelines: Automatic app versioning (SemVer) | Max Wagner - Developer</title>
+    <meta name="description" content="Learn how you can use Azure Pipelines to automatically generate a version number and create a Git tag with the latest changes.">
+    <meta name="author" content="Max Wagner" />
+	<meta name="copyright" content="Max Wagner" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168711024-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-168711024-1');
+    </script>
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/dist/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/dist/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/dist/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/dist/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/dist/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/dist/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/dist/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/dist/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/dist/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/dist/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/dist/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/dist/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/dist/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/dist/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/dist/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-lg-3">
+                    <div id="logo">
+                        <a href="/">Max Wagner</a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-9">
+                    <div id="headerSocials">
+                        <a href="https://twitter.com/MaxWagnerDev" target="_blank"><i
+                                class="fab fa-twitter"></i><span class="d-none d-lg-inline">MaxWagnerDev</span></a>
+                        <a href="https://github.com/maxwagner-dev" target="_blank"><i
+                                class="fab fa-github"></i><span class="d-none d-lg-inline">maxwagner-dev</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="marginTop-40">Azure Pipelines: Automatic app versioning</h1>
+                    Most of the software we use and depend on has a version number to communicate the impact of changes.
+                    <br>
+                    Learn how you can use Azure Pipelines to automatically generate a semantic version number (SemVer) for your software, 
+                    based on your development workflow.
+                    <br>
+                    <br>
+                    <div class="h3">Create an Azure DevOps account to use Azure Pipelines</div>
+                    <i>If you already have an Azure DevOps account, you can skip this step!</i>
+                    <br>
+                    Azure DevOps is a Microsoft product offering all tools a development team needs to build and deliver great software. 
+                    The first 5 users are free! You can find more information on the official website and register your account here: 
+                    <a href="https://azure.microsoft.com/de-de/services/devops/" target="_blank">https://azure.microsoft.com/de-de/services/devops/</a>.
+                    <br>
+                    <br>
+                    <div class="h3">Download the "GitTools" extension</div>
+                    For any further steps, we use the free Azure DevOps extension "GitTools". 
+                    This small utility makes the heavy work generating the version number for us. 
+                    Download the extension from the official Marketplace and link it to your organization:
+                    <a href="https://marketplace.visualstudio.com/items?itemName=gittools.gittools" target="_blank">https://marketplace.visualstudio.com/items?itemName=gittools.gittools</a>.
+                    <br>
+                    <br>
+                    Verify the successful installation by opening the extension list in your organization settings and check whether the "GitTools" extension is listed:
+                    <br>
+                    <img class="img-fluid" src="/images/azure-devops-extension-list.png" alt="Azure DevOps organization extension list" />
+                    <br>
+                    <br>
+                    <div class="h3">Create a new pipeline and add the "GitTools" task</div>
+                    <pre>
+                        <code class="language-yaml">
+steps:
+  - checkout: self
+    persistCredentials: true
+  - task: gitversion/setup@0
+    displayName: 'Install GitTools'
+    inputs:
+    versionSpec: '5.3.x'
+  - task: gitversion/execute@0
+    displayName: 'Calculate SemVer'
+  - script: echo current version is $(GitVersion.SemVer)
+    displayName: 'Display calculated version'
+                        </code>
+                    </pre>
+                    <br>
+                    After the task is finished you have a bunch of variables available containing information about the calculated version. 
+                    Have a look at the log output of the pipeline to see all variables or you can check out the extensions GitHub repository (<a href="https://github.com/GitTools/actions" target="_blank">https://github.com/GitTools/actions</a>)
+                    To get the fully calculated version you can use <strong>$(GitVersion.SemVer)</strong>.
+                    <br>
+                    <br>
+                    <div class="h3">Create a new Git tag with calculated version</div>
+                    To save the current version in your Git repository and to be able to compare them with other versions you can create a new Git tag.
+                    Modify your existing pipeline file and add two new steps. <strong>To be able to push the Git tag from within the pipeline to your repository, you need to set the "Contribute" permission in for the build service user to "Allow".</strong>
+                    <pre>
+                        <code class="language-yaml">
+steps:
+  - task: CmdLine@2
+    displayName: Init git global config
+    inputs:
+      script: |
+        git config --global user.email "EMAIL-OF-PIPELINE-USER"
+        git config --global user.name "CI / CD Pipeline"
+  - task: CmdLine@2
+    displayName: Create Git tag for current version
+    inputs:
+      script: |
+        git tag -a $(GitVersion.SemVer) -m "Tagged version $(GitVersion.SemVer)"
+        git push origin $(GitVersion.SemVer)
+                        </code>
+                    </pre>
+                    <br>
+                    <br>
+                    <div class="h3">Helpful Links</div>
+                    <ul>
+                        <li><a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema" target="_blank">Azure Pipelines YAML schema reference</a></li>
+                        <li><a href="https://docs.microsoft.com/en-us/azure/devops/organizations/security/set-git-tfvc-repository-permissions?view=azure-devops#:~:text=a%20security%20group.-,Prerequisites,repositories%20or%20the%20TFVC%20repository" target="_blank">Azure Repositories permissions</a></li>
+                        <li><a href="https://gitversion.net/docs/" target="_blank">Configuration of GitTools / GitVersion extension</a></li>
+                        <li><a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank">Git Basics - Tagging</a></li>
+                    </ul>
+                    <br>
+                    <b>Any questions or problems? - Tweet me <a href="https://twitter.com/MaxWagnerDev" target="_blank">@MaxWagnerDev</a>.</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div id="disclaimer">
+                        <b>Disclaimer:</b> The opinions expressed herein are my own personal opinions and do not represent my employer’s view in any way.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="border-dark-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-5">
+                        Copyright © 2020, Max Wagner
+                    </div>
+                    <div class="col-12 col-lg-7">
+                        <ul>
+                            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="/legal-details.html">Legal details</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="cookieNotice">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-9">
+                    <div id="cookieNotice--text">
+                        This website uses <a href="https://www.cookiesandyou.com/" target="_blank">cookies</a> to ensure you get the best experience on our website. <a href="/privacy-policy.html" target="_blank">Privacy policy</a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <div id="cookieNotice--button">
+                        <button id="js-acceptCookies" class="button button--primary">Got it!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const cookieStorage = localStorage;
+        const maxWagnerDevCookie = cookieStorage.getItem('wagnerDev-Cookie');
+        console.log(maxWagnerDevCookie);
+        if(maxWagnerDevCookie === null || maxWagnerDevCookie !== 'accepted') {
+            const cookieNoticeElement = document.getElementById('cookieNotice');
+            if(cookieNoticeElement !== null) {
+                cookieNoticeElement.classList.add('active');
+                const cookieNoticeButton = document.getElementById('js-acceptCookies');
+                if(cookieNoticeButton !== null) {
+                    cookieNoticeButton.addEventListener('click', (button) => {
+                        cookieNoticeElement.classList.remove('active');
+                        cookieStorage.setItem('wagnerDev-Cookie', 'accepted');
+                    });
+                }
+            }
+        }
+    </script>
+    <script src="/assets/dist/js/prism.js"></script>
+</body>
+
+</html>
