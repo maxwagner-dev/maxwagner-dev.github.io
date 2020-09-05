@@ -160,7 +160,6 @@
     <script type="text/javascript">
         const cookieStorage = localStorage;
         const maxWagnerDevCookie = cookieStorage.getItem('wagnerDev-Cookie');
-        console.log(maxWagnerDevCookie);
         if(maxWagnerDevCookie === null || maxWagnerDevCookie !== 'accepted') {
             const cookieNoticeElement = document.getElementById('cookieNotice');
             if(cookieNoticeElement !== null) {
