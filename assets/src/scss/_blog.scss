@@ -2,6 +2,7 @@
     background-color: $white;
     @include defaultShadow();
     padding: 20px;
+    margin: 0px 0px 40px 0px;
     .blogEntry--publishDate {
         text-align: right;
         margin-bottom: 20px;
@@ -14,5 +15,11 @@
     .blogEntry--summary {
         margin-bottom: 40px;
         min-height: 220px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .blogEntry {
+        margin: 0px;
     }
 }

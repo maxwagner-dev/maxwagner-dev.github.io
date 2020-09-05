@@ -7614,7 +7614,7 @@ header {
       line-height: 80px;
       display: inline-block;
       vertical-align: middle;
-      padding: 0px 10px; }
+      padding: 0px 5px; }
       header #headerSocials a i {
         display: inline-block;
         vertical-align: middle;
@@ -7685,7 +7685,8 @@ ul {
   -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.5);
-  padding: 20px; }
+  padding: 20px;
+  margin: 0px 0px 40px 0px; }
   .blogEntry .blogEntry--publishDate {
     text-align: right;
     margin-bottom: 20px; }
@@ -7696,6 +7697,10 @@ ul {
   .blogEntry .blogEntry--summary {
     margin-bottom: 40px;
     min-height: 220px; }
+
+@media only screen and (min-width: 992px) {
+  .blogEntry {
+    margin: 0px; } }
 
 footer {
   border-top: 1px #ababab solid;
